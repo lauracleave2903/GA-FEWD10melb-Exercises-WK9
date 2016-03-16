@@ -1,0 +1,104 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    background: #f2f2f2;
+}
+
+main {
+    max-width: 1280px;
+    margin: 0 auto;
+    overflow: hidden;
+    background: white;
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 20px;
+    margin: 5px;
+    font-size: 1.5em;
+    background: #178CA6;
+    color: white;
+    text-decoration: none;
+    /* gets rid of underline on link */
+    text-shadow: 0 2px 0 #0F5B6C;
+    border-radius: 6px;
+    box-shadow: 0 3px 0 #0F5B6C;
+    cursor: pointer;
+    /* we need this because we lose the pointer when we make an a tag display block */
+    transition-property: background, text-shadow, box-shadow;
+    transition-duration: 1s;
+}
+
+.button:hover {
+    background: #F24130;
+    text-shadow: 0 2px 0 #99160A;
+    box-shadow: 0 3px 0 #99160A;
+}
+
+nav {
+    background: #178CA6;
+    width: 300px;
+    position: relative;
+    left: -300px;
+    transition: left 1s;
+}
+
+nav ul {
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    text-transform: uppercase;
+    list-style: none;
+    padding: 20px;
+    color: white;
+    border-bottom: 1px solid #444;
+}
+
+nav:after {
+    content: "\2630";
+    text-align: center;
+    font-size: 1.5em;
+    color: white;
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: #178CA6;
+    position: absolute;
+    top: 0;
+    right: -40px;
+}
+
+nav.open {
+    left: 0;
+}
+
+.buttonAnimate {
+    position: relative;
+    animation-duration: 3s;
+    animation-name: buttonAnimate;
+    animation-fill-mode: forwards;
+}
+
+@keyframes buttonAnimate {
+    0% {
+        left: 0;
+    }
+    25% {
+        transform: rotateX(180deg);
+    }
+    100% {
+        left: 50%;
+    }
+}
